@@ -73,9 +73,9 @@ return {
         opts.desc = "Restart LSP"
         keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
 
-        -- Map <leader>rf to open Telescope Flutter commands
+        -- Map to open Telescope Flutter commands
         opts.desc = "Telescope: Flutter Commands"
-        keymap.set("n", "<leader>rf", function()
+        keymap.set("n", "<leader>tf", function()
           require("telescope").extensions.flutter.commands()
         end, opts)
       end,
