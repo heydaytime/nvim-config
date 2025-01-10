@@ -4,6 +4,7 @@ return {
   opts = {
     indent = { enable = true },
     ensure_installed = {
+      "dart",
       "bash",
       "c",
       "diff",

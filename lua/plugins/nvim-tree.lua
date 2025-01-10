@@ -46,7 +46,7 @@ return {
     })
 
     -- set keymaps
-    local keymap = vim.keymap                                                                 -- for conciseness
+    local keymap = vim.keymap                                                                   -- for conciseness
 
     keymap.set("n", "<leader>fe", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
     keymap.set(
@@ -54,8 +54,13 @@ return {
       "<leader>ft",
       "<cmd>NvimTreeFindFileToggle<CR>",
       { desc = "Toggle file explorer on current file" }
-    )                                                                                             -- toggle file explorer on current file
+    )                                                                                               -- toggle file explorer on current file
     keymap.set("n", "<leader>fc", "<cmd>NvimTreeCollapse<CR>", { desc = "Collapse file explorer" }) -- collapse file explorer
-    keymap.set("n", "<leader>fr", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" }) -- refresh file explorer
+    keymap.set("n", "<leader>fr", "<cmd>NvimTreeRefresh<CR>", { desc = "Refresh file explorer" })   -- refresh file explorer
+
+    vim.keymap.set('n', '<leader>fh', '<cmd>wincmd h<cr>', { desc = 'Navigate left in Neovim' })
+    vim.keymap.set('n', '<leader>fj', '<cmd>wincmd j<cr>', { desc = 'Navigate down in Neovim' })
+    vim.keymap.set('n', '<leader>fk', '<cmd>wincmd k<cr>', { desc = 'Navigate up in Neovim' })
+    vim.keymap.set('n', '<leader>fl', '<cmd>wincmd l<cr>', { desc = 'Navigate right in Neovim' })
   end,
 }
