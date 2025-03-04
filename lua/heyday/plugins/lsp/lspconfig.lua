@@ -88,6 +88,7 @@ return {
       ["svelte"] = function()
         -- configure svelte server
         lspconfig["svelte"].setup({
+          filetypes = { "typescript", "javascript", "svelte", "html", "css" },
           capabilities = capabilities,
           on_attach = function(client, bufnr)
             vim.api.nvim_create_autocmd("BufWritePost", {
@@ -134,4 +135,3 @@ return {
     })
   end,
 }
-
