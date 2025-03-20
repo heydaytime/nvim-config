@@ -39,12 +39,10 @@ return {
         ["<C-e>"] = cmp.mapping.abort(), -- close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
 
-        -- New Tab mapping to select and confirm first suggestion
+        -- Tab to do C-n (next item)
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            -- Select the first suggestion and confirm
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            cmp.confirm({ select = true })
+            cmp.select_next_item()
           elseif luasnip.expandable() then
             luasnip.expand()
           elseif luasnip.locally_jumpable(1) then
@@ -54,10 +52,10 @@ return {
           end
         end, { "i", "s" }),
 
-        -- Optional: Shift+Tab to go back in completion list or jump snippets
+        -- Shift+Tab to do C-p (previous item)
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+            cmp.select_prev_item()
           elseif luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           else
