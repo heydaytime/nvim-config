@@ -92,6 +92,21 @@ return {
           },
         })
       end,
+
+      ["jdtls"] = function()
+        lspconfig["jdtls"].setup({
+          settings = {
+            java = {
+              project = {
+                referencedLibraries = {
+                  "/Users/mihirbelose/ProgrammingProjects/SchoolProjects/JavaProjects/junit5.jar",
+                },
+              },
+            },
+          },
+        })
+      end,
+
       ["svelte"] = function()
         lspconfig["svelte"].setup({
           filetypes = { "typescript", "javascript", "svelte", "html", "css" },

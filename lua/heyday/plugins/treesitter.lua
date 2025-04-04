@@ -11,6 +11,13 @@ return {
 
     -- configure treesitter
     treesitter.setup({ -- enable syntax highlighting
+
+      modules = {},
+      sync_install = false,
+      auto_install = true,
+
+      -- List of parsers to ignore installing (or "all")
+      ignore_install = { "javascript" },
       highlight = {
         enable = true,
       },
