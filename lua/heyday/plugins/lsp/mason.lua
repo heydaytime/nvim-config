@@ -37,7 +37,7 @@ return {
         "pyright",
       },
       automatic_installation = true,
-      -- Don't set automatic_enable here - let lspconfig.lua handle it
+      automatic_enable = false,
     })
 
     mason_tool_installer.setup({
