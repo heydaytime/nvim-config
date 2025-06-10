@@ -28,7 +28,7 @@ return {
       capabilities = capabilities,
       cmd = {
         "clangd",
-        "--query-driver=/Users/mihirbelose/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
+        "--query-driver=/Users/mihirbelose/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc",
       },
     })
 
