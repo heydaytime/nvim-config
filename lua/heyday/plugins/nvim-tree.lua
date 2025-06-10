@@ -34,7 +34,7 @@ return {
         },
       },
       filters = {
-        custom = { ".DS_Store" },
+        custom = { ".DS_Store", "lazy-lock.json" },
       },
       git = {
         ignore = false,
