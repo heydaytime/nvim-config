@@ -6,3 +6,9 @@
 ![image](https://github.com/user-attachments/assets/51687705-60d9-4357-ae4b-be5407762fdf)
 ![image](https://github.com/user-attachments/assets/74368ae1-2407-4155-8916-04133156105a)
 
+## Pre-requisites
+```bash
+npm install -g mcp-hub@latest
+```
+> Something to to do with AI... Just testing
+
