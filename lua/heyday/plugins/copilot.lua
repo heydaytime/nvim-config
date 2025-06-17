@@ -11,8 +11,9 @@ return {
         replace_keycodes = false,
       })
       vim.g.copilot_no_tab_map = true
-      vim.keymap.set("i", "<C-g>n", "<Plug>(copilot-next)", { silent = true })
       vim.keymap.set("i", "<C-g>p", "<Plug>(copilot-previous)", { silent = true })
+      vim.keymap.set("i", "<C-g>n", "<Plug>(copilot-next)", { silent = true })
+      vim.keymap.set("i", "<C-g>l", "<Plug>(copilot-accept-line)", { silent = true })
     end,
   },
   {
@@ -25,7 +26,6 @@ return {
     config = function()
       local utils = require("heyday.core.utils")
       local icons = require("heyday.core.icons")
-      utils.desc("<C-g>a", "AI")
 
       -- -- Copilot autosuggestions
       -- vim.g.copilot_no_tab_map = true
@@ -245,13 +245,14 @@ Always end with:
         end,
       })
 
-      vim.keymap.set({ "n" }, "<leader>aa", chat.toggle, { desc = "AI Toggle" })
-      vim.keymap.set({ "v" }, "<leader>aa", chat.open, { desc = "AI Open" })
-      vim.keymap.set({ "n" }, "<leader>ax", chat.reset, { desc = "AI Reset" })
-      vim.keymap.set({ "n" }, "<leader>as", chat.stop, { desc = "AI Stop" })
-      vim.keymap.set({ "n" }, "<leader>am", chat.select_model, { desc = "AI Models" })
-      vim.keymap.set({ "n", "v" }, "<leader>ap", chat.select_prompt, { desc = "AI Prompts" })
-      vim.keymap.set({ "n", "v" }, "<leader>aq", function()
+      vim.keymap.set({ "n", "i" }, "<C-g><C-g>", chat.toggle, { desc = "AI Toggle" })
+      vim.keymap.set({ "n", "i" }, "<C-g>a", chat.open, { desc = "AI Open" })
+      vim.keymap.set({ "n", "i" }, "<C-g>x", chat.reset, { desc = "AI Reset" })
+      vim.keymap.set({ "n", "i" }, "<C-g>s", chat.stop, { desc = "AI Stop" })
+      vim.keymap.set({ "n", "i" }, "<C-g>m", chat.select_model, { desc = "AI Models" })
+
+      vim.keymap.set({ "n", "i", "v" }, "<C-g>p", chat.select_prompt, { desc = "AI Prompts" })
+      vim.keymap.set({ "n", "i", "v" }, "<C-g>q", function()
         vim.ui.input({
           prompt = "AI Question> ",
         }, function(input)

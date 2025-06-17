@@ -35,6 +35,7 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
+        "marksman",
       },
       automatic_installation = true,
       automatic_enable = false,
