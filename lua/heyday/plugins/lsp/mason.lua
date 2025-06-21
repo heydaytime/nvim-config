@@ -22,8 +22,8 @@ return {
     -- Only handle installation, not configuration
     mason_lspconfig.setup({
       ensure_installed = {
-        "gopls",
-        "clangd",
+        -- "gopls",
+        -- "clangd", Mason does not support arm
         "jdtls",
         "ts_ls",
         "html",

@@ -25,16 +25,6 @@ return {
     -- Configure servers directly with lspconfig
     -- Custom configurations
 
-    if vim.loop.cwd() == "/Users/mihirbelose/esp/blink-led" then
-      lspconfig.clangd.setup({
-        capabilities = capabilities,
-        cmd = {
-          "clangd",
-          "--query-driver=/Users/mihirbelose/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc",
-        },
-      })
-    end
-
     lspconfig.jdtls.setup({
       capabilities = capabilities,
       settings = {

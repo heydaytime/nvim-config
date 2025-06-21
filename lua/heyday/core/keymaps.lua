@@ -10,10 +10,11 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Keybinds to make split navigation easier.
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
+-- TMUX DOES NOT WORK THROUGH SSH ON RASPBERRY PI
+-- vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
+-- vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
+-- vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window" })
+-- vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
 
 vim.keymap.set("n", "<leader>-", function()
   vim.diagnostic.open_float(0, { scope = "line" })
