@@ -54,7 +54,6 @@ return {
       on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePost", {
           pattern = { "*.js", "*.ts" },
-          buffer = bufnr,
           callback = function(ctx)
             client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
           end,
