@@ -7,7 +7,10 @@ vim.opt.number = true
 vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 vim.opt.shiftwidth = 2 -- 2 spaces for indent width
 vim.opt.expandtab = true -- expand tab to spaces
-vim.opt.autoindent = true -- copy indent from current line when starting new one
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+
+vim.o.virtualedit = "onemore"
 
 vim.opt.wrap = false
 
