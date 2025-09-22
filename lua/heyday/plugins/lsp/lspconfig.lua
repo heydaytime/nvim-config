@@ -7,7 +7,6 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -25,8 +24,10 @@ return {
     -- Configure servers directly with lspconfig
     -- Custom configurations
 
+    -- Refactoring everything to vim.lsp.config
+
     if vim.loop.cwd() == "/Users/mihirbelose/esp/blink-led" then
-      lspconfig.clangd.setup({
+      vim.lsp.config("clangd", {
         capabilities = capabilities,
         cmd = {
           "clangd",
@@ -35,7 +36,7 @@ return {
       })
     end
 
-    lspconfig.jdtls.setup({
+    vim.lsp.config("jdtls", {
       capabilities = capabilities,
       settings = {
         java = {
@@ -48,7 +49,7 @@ return {
       },
     })
 
-    lspconfig.svelte.setup({
+    vim.lsp.config("svelte", {
       capabilities = capabilities,
       filetypes = { "typescript", "javascript", "svelte", "html", "css" },
       on_attach = function(client, bufnr)
@@ -61,17 +62,27 @@ return {
       end,
     })
 
-    lspconfig.graphql.setup({
+    vim.lsp.config("ltex", {
+      settings = {
+        ltex = {
+          language = "en-US",
+          checkFrequency = "save", -- or "edit" for real-time
+        },
+      },
+      filetypes = { "markdown", "text", "tex", "gitcommit" },
+    })
+
+    vim.lsp.config("graphql", {
       capabilities = capabilities,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
     })
 
-    lspconfig.emmet_ls.setup({
+    vim.lsp.config("emmet_ls", {
       capabilities = capabilities,
       filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
     })
 
-    lspconfig.lua_ls.setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -81,13 +92,8 @@ return {
       },
     })
 
-    -- Default configurations for other servers
-    local default_servers = { "gopls", "ts_ls", "html", "cssls", "tailwindcss", "prismals", "pyright" }
-
-    for _, server in ipairs(default_servers) do
-      lspconfig[server].setup({
-        capabilities = capabilities,
-      })
-    end
+    vim.lsp.config("*", {
+      capabilities = capabilities,
+    })
   end,
 }

@@ -14,6 +14,7 @@ return {
       vim.keymap.set("i", "<C-g>p", "<Plug>(copilot-previous)", { silent = true })
       vim.keymap.set("i", "<C-g>n", "<Plug>(copilot-next)", { silent = true })
       vim.keymap.set("i", "<C-g>l", "<Plug>(copilot-accept-line)", { silent = true })
+      vim.keymap.set("i", "<C-g>w", "<Plug>(copilot-accept-word)", { silent = true })
     end,
   },
   {

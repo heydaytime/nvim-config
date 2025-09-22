@@ -36,6 +36,7 @@ return {
         "prismals",
         "pyright",
         "marksman",
+        "ltex",
       },
       automatic_installation = true,
       automatic_enable = false,
