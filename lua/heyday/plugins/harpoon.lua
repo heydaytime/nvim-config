@@ -18,6 +18,11 @@ return {
       harpoon.ui:toggle_quick_menu(harpoon:list())
     end, { desc = "Open harpoon menu" })
 
+    -- Clear all harpoon marks
+    vim.keymap.set("n", "<leader>hc", function()
+      harpoon:list():clear()
+    end, { desc = "Clear all harpoon marks" })
+
     -- File selection using number keys:
     vim.keymap.set("n", "<leader>1", function()
       harpoon:list():select(1)
