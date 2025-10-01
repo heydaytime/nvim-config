@@ -61,7 +61,7 @@ Always end with:
 ]]
 
       chat.setup({
-        model = "gpt-4.1",
+        model = "gpt-5-mini",
         debug = true,
         temperature = 0,
         question_header = " " .. icons.ui.User .. " ",
