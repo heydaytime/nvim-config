@@ -35,6 +35,12 @@ return {
       vim.lsp.enable("clangd")
     end
 
+    vim.lsp.config("marksman", {
+      capabilities = capabilities,
+      filetypes = { "markdown" },
+      root_markers = { ".git", "README.md" },
+    })
+
     -- Configure jdtls
     vim.lsp.config("jdtls", {
       capabilities = capabilities,
@@ -85,7 +91,24 @@ return {
       root_markers = { "zls.json", "build.zig", ".git" },
     })
 
+    vim.lsp.config("pyright", {
+      capabilities = capabilities,
+      root_markers = { "pyproject.toml", "setup.py", ".git" },
+    })
+
     -- Enable LSPs only for their specific filetypes
+    --
+    --
+    --
+    --
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "markdown",
+      callback = function()
+        vim.lsp.enable("marksman")
+      end,
+    })
+
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "java",
       callback = function()
@@ -111,6 +134,13 @@ return {
       pattern = { "zig", "zir" },
       callback = function()
         vim.lsp.enable("zls")
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "python",
+      callback = function()
+        vim.lsp.enable("pyright")
       end,
     })
 
