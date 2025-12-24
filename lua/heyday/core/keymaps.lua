@@ -23,7 +23,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Make default delete/change operations use black hole register
 -- vim.keymap.set({ "n", "v" }, "d", [["_d]])

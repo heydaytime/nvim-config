@@ -25,6 +25,9 @@ return {
       "query",
       "vimdoc",
       "c",
+      "gdscript",
+      "godot_resource",
+      "gdshader",
     },
     highlight = {
       enable = true,
