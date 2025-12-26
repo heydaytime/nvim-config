@@ -97,10 +97,6 @@ return {
     })
 
     -- Enable LSPs only for their specific filetypes
-    --
-    --
-    --
-    --
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "markdown",
@@ -141,6 +137,47 @@ return {
       pattern = "python",
       callback = function()
         vim.lsp.enable("pyright")
+      end,
+    })
+
+    -- Configure gdscript (Godot's built-in LSP)
+    vim.lsp.config("gdscript", {
+      capabilities = capabilities,
+      filetypes = { "gdscript" },
+      root_markers = { "project.godot", ". git" },
+    })
+
+    -- Add the FileType autocmd to enable it
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "gdscript",
+      callback = function()
+        vim.lsp.enable("gdscript")
+      end,
+    })
+
+    -- Configure OmniSharp for C# (Godot Mono)
+    vim.lsp.config("omnisharp", {
+      capabilities = capabilities,
+      filetypes = { "cs" },
+      root_markers = { "*. sln", "*.csproj", "project.godot", ". git" },
+      cmd = { "OmniSharp" },
+      settings = {
+        FormattingOptions = {
+          EnableEditorConfigSupport = true,
+          OrganizeImports = true,
+        },
+        RoslynExtensionsOptions = {
+          EnableAnalyzersSupport = true,
+          EnableImportCompletion = true,
+        },
+      },
+    })
+
+    -- Add the FileType autocmd to enable it
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = "cs",
+      callback = function()
+        vim.lsp.enable("omnisharp")
       end,
     })
 
