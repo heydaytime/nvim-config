@@ -144,7 +144,7 @@ return {
     vim.lsp.config("gdscript", {
       capabilities = capabilities,
       filetypes = { "gdscript" },
-      root_markers = { "project.godot", ". git" },
+      root_markers = { "project.godot", ".git" },
     })
 
     -- Add the FileType autocmd to enable it
@@ -159,7 +159,7 @@ return {
     vim.lsp.config("omnisharp", {
       capabilities = capabilities,
       filetypes = { "cs" },
-      root_markers = { "*. sln", "*.csproj", "project.godot", ". git" },
+      root_markers = { "*.sln", "*.csproj", "project.godot", ".git" },
       cmd = { "OmniSharp" },
       settings = {
         FormattingOptions = {
