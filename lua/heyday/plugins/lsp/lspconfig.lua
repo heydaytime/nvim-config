@@ -156,11 +156,12 @@ return {
     })
 
     -- Configure OmniSharp for C# (Godot Mono)
+    -- Configure OmniSharp for C# (Godot Mono)
     vim.lsp.config("omnisharp", {
       capabilities = capabilities,
       filetypes = { "cs" },
-      root_markers = { "*.sln", "*.csproj", "project.godot", ".git" },
-      cmd = { "OmniSharp" },
+      root_markers = { "*.sln", "*.csproj", ". git" },
+      cmd = { "OmniSharp", "--languageserver" },
       settings = {
         FormattingOptions = {
           EnableEditorConfigSupport = true,
@@ -172,7 +173,6 @@ return {
         },
       },
     })
-
     -- Add the FileType autocmd to enable it
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "cs",
