@@ -161,6 +161,10 @@ return {
       filetypes = { "cs" },
       root_markers = { "*.sln", "*.csproj", ".git" },
       cmd = { "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run", "--languageserver" },
+      cmd_env = {
+        DOTNET_ROOT = "/opt/homebrew/Cellar/dotnet@8/8.0.122/libexec",
+        PATH = vim.env.PATH,
+      },
       settings = {
         FormattingOptions = {
           EnableEditorConfigSupport = true,
@@ -179,7 +183,9 @@ return {
         vim.lsp.enable("omnisharp")
       end,
     })
+
     -- Set default capabilities for all other servers
+
     vim.lsp.config("*", {
       capabilities = capabilities,
     })
