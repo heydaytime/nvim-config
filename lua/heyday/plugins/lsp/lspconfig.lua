@@ -185,7 +185,6 @@ return {
     })
 
     -- Set default capabilities for all other servers
-
     vim.lsp.config("*", {
       capabilities = capabilities,
     })
