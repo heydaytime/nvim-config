@@ -41,22 +41,22 @@ return {
       root_markers = { ".git", "README.md" },
     })
 
-    -- Configure jdtls
-    vim.lsp.config("jdtls", {
-      capabilities = capabilities,
-      root_markers = { "pom.xml", "build.gradle", ".git" },
-      settings = {
-        java = {
-          project = {
-            referencedLibraries = {
-              "/Users/mihirbelose/ProgrammingProjects/SchoolProjects/JavaProjects/junit5.jar",
-            },
-          },
-        },
-      },
-    })
-
-    -- Configure svelte
+    -- -- Configure jdtls
+    -- vim.lsp.config("jdtls", {
+    --   capabilities = capabilities,
+    --   root_markers = { "pom.xml", "build.gradle", ".git" },
+    --   settings = {
+    --     java = {
+    --       project = {
+    --         referencedLibraries = {
+    --           "/Users/mihirbelose/ProgrammingProjects/SchoolProjects/JavaProjects/junit5.jar",
+    --         },
+    --       },
+    --     },
+    --   },
+    -- })
+    --
+    -- -- Configure svelte
     vim.lsp.config("svelte", {
       capabilities = capabilities,
       filetypes = { "typescript", "javascript", "svelte", "html", "css" },
@@ -105,12 +105,12 @@ return {
       end,
     })
 
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = "java",
-      callback = function()
-        vim.lsp.enable("jdtls")
-      end,
-    })
+    -- vim.api.nvim_create_autocmd("FileType", {
+    --   pattern = "java",
+    --   callback = function()
+    --     vim.lsp.enable("jdtls")
+    --   end,
+    -- })
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = { "typescript", "javascript", "svelte" },
@@ -162,8 +162,8 @@ return {
       root_markers = { "*.sln", "*.csproj", ".git" },
       cmd = { "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run", "--languageserver" },
       cmd_env = {
-        DOTNET_ROOT = "/opt/homebrew/Cellar/dotnet@8/8.0.122/libexec",
-        PATH = vim.env.PATH,
+        DOTNET_ROOT = vim.env.DOTNET_ROOT or "/opt/homebrew/opt/dotnet@8/libexec",
+        PATH = "/opt/homebrew/opt/dotnet@8/libexec:" .. vim.env.PATH,
       },
       settings = {
         FormattingOptions = {
