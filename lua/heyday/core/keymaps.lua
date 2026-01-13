@@ -3,8 +3,13 @@ vim.g.mapleader = " "
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymap to open the diagnostic [Q]uickfix list
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", function()
+  vim.diagnostic.open_float(nil, {
+    scope = "line",
+    focus = false, -- don't jump into the float
+    border = "rounded",
+  })
+end, { desc = "Show diagnostics for current line" })
 
 -- Keybinds to make split navigation easier.
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })
