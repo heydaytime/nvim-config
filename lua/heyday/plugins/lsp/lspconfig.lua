@@ -41,6 +41,14 @@ return {
       root_markers = { ".git", "README.md" },
     })
 
+    -- configure html
+    --
+    vim.lsp.config("html", {
+      capabilities = capabilities,
+      filetypes = { "html" },
+      root_markers = { "index.html" },
+    })
+
     -- -- Configure jdtls
     -- vim.lsp.config("jdtls", {
     --   capabilities = capabilities,
