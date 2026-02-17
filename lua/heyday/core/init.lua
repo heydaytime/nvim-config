@@ -1,6 +1,11 @@
 require("heyday.core.options")
 require("heyday.core.keymaps")
 
+-- Everything below is for terminal Neovim only
+if vim.g.vscode then
+  return
+end
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),

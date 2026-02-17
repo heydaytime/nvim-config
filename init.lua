@@ -1,2 +1,5 @@
 require("heyday.core")
-require("heyday.lazy")
+
+if not vim.g.vscode then
+  require("heyday.lazy")
+end
