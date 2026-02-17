@@ -80,10 +80,10 @@ if vim.g.vscode then
   vim.keymap.set("n", "<leader>)", function()
     vscode.action("workbench.action.openEditorAtIndex8")
   end, { desc = "Go to editor tab 8" })
-  vim.keymap.set("n", "<leader>}", function()
+  vim.keymap.set("n", "<leader>]", function()
     vscode.action("workbench.action.openEditorAtIndex9")
   end, { desc = "Go to editor tab 9" })
-  vim.keymap.set("n", "<leader>]", function()
+  vim.keymap.set("n", "<leader>}", function()
     vscode.action("workbench.action.lastEditorInGroup")
   end, { desc = "Go to last editor tab" })
 
