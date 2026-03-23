@@ -5,11 +5,12 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 vim.keymap.set("n", "<leader>q", function()
   vim.diagnostic.open_float(nil, {
-    scope = "line",
-    focus = false, -- don't jump into the float
+    focus = false,
+    scope = "cursor", -- or "line"
     border = "rounded",
+    source = "if_many",
   })
-end, { desc = "Show diagnostics for current line" })
+end, { desc = "Show diagnostics at cursor" })
 
 -- Keybinds to make split navigation easier.
 vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move focus to the left window" })

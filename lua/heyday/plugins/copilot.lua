@@ -3,7 +3,7 @@ return {
     "github/copilot.vim",
 
     config = function()
-      vim.g.copilot_settings = { selectedCompletionModel = "gpt-4o-copilot" }
+      vim.g.copilot_settings = { selectedCompletionModel = "gpt-41-copilot" }
 
       -- Keymaps for GitHub Copilot
       vim.keymap.set("i", "<C-g>y", 'copilot#Accept("\\<CR>")', {
