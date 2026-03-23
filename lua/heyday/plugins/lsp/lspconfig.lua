@@ -10,6 +10,15 @@ return {
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
+    local on_attach = function(client, bufnr)
+      local opts = { buffer = bufnr, silent = true }
+      vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+      vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+      vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+    end
+
     -- Configure diagnostics
     vim.diagnostic.config({
       signs = {
@@ -26,6 +35,7 @@ return {
     if vim.loop.cwd() == "/Users/mihirbelose/esp/blink-led" then
       vim.lsp.config("clangd", {
         capabilities = capabilities,
+        on_attach = on_attach,
         cmd = {
           "clangd",
           "--query-driver=/Users/mihirbelose/.espressif/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32-elf-gcc",
@@ -37,31 +47,17 @@ return {
 
     vim.lsp.config("marksman", {
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes = { "markdown" },
       root_markers = { ".git", "README.md" },
     })
 
-    -- -- Configure jdtls
-    -- vim.lsp.config("jdtls", {
-    --   capabilities = capabilities,
-    --   root_markers = { "pom.xml", "build.gradle", ".git" },
-    --   settings = {
-    --     java = {
-    --       project = {
-    --         referencedLibraries = {
-    --           "/Users/mihirbelose/ProgrammingProjects/SchoolProjects/JavaProjects/junit5.jar",
-    --         },
-    --       },
-    --     },
-    --   },
-    -- })
-    --
-    -- -- Configure svelte
     vim.lsp.config("svelte", {
       capabilities = capabilities,
       filetypes = { "typescript", "javascript", "svelte", "html", "css" },
       root_markers = { "package.json", "svelte.config.js", ".git" },
       on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePost", {
           pattern = { "*.js", "*.ts" },
           callback = function(ctx)
@@ -71,9 +67,37 @@ return {
       end,
     })
 
-    -- Configure lua_ls
+    vim.lsp.config("ts_ls", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+      root_markers = { "package.json", "tsconfig.json", ".git" },
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+      callback = function()
+        vim.lsp.enable("ts_ls")
+      end,
+    })
+
+    vim.lsp.config("gopls", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "go", "gomod" },
+      root_markers = { "go.mod", ".git" },
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = { "go", "gomod" },
+      callback = function()
+        vim.lsp.enable("gopls")
+      end,
+    })
+
     vim.lsp.config("lua_ls", {
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes = { "lua" },
       root_markers = { ".luarc.json", ".luarc.jsonc", ".stylua.toml", "stylua.toml", ".git" },
       settings = {
@@ -84,19 +108,18 @@ return {
       },
     })
 
-    -- Configure zls (Zig Language Server)
     vim.lsp.config("zls", {
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes = { "zig", "zir" },
       root_markers = { "zls.json", "build.zig", ".git" },
     })
 
     vim.lsp.config("pyright", {
       capabilities = capabilities,
+      on_attach = on_attach,
       root_markers = { "pyproject.toml", "setup.py", ".git" },
     })
-
-    -- Enable LSPs only for their specific filetypes
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "markdown",
@@ -104,13 +127,6 @@ return {
         vim.lsp.enable("marksman")
       end,
     })
-
-    -- vim.api.nvim_create_autocmd("FileType", {
-    --   pattern = "java",
-    --   callback = function()
-    --     vim.lsp.enable("jdtls")
-    --   end,
-    -- })
 
     vim.api.nvim_create_autocmd("FileType", {
       pattern = { "typescript", "javascript", "svelte" },
@@ -140,14 +156,13 @@ return {
       end,
     })
 
-    -- Configure gdscript (Godot's built-in LSP)
     vim.lsp.config("gdscript", {
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes = { "gdscript" },
       root_markers = { "project.godot", ".git" },
     })
 
-    -- Add the FileType autocmd to enable it
     vim.api.nvim_create_autocmd("FileType", {
       pattern = "gdscript",
       callback = function()
@@ -155,9 +170,9 @@ return {
       end,
     })
 
-    -- Configure OmniSharp for C# (Godot Mono)
     vim.lsp.config("omnisharp", {
       capabilities = capabilities,
+      on_attach = on_attach,
       filetypes = { "cs" },
       root_markers = { "*.sln", "*.csproj", ".git" },
       cmd = { "/opt/homebrew/Cellar/omnisharp/1.35.3/libexec/run", "--languageserver" },
@@ -184,7 +199,6 @@ return {
       end,
     })
 
-    -- Set default capabilities for all other servers
     vim.lsp.config("*", {
       capabilities = capabilities,
     })
