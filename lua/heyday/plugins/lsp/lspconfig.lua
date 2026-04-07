@@ -52,21 +52,6 @@ return {
       root_markers = { ".git", "README.md" },
     })
 
-    vim.lsp.config("svelte", {
-      capabilities = capabilities,
-      filetypes = { "typescript", "javascript", "svelte", "html", "css" },
-      root_markers = { "package.json", "svelte.config.js", ".git" },
-      on_attach = function(client, bufnr)
-        on_attach(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = { "*.js", "*.ts" },
-          callback = function(ctx)
-            client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-          end,
-        })
-      end,
-    })
-
     vim.lsp.config("ts_ls", {
       capabilities = capabilities,
       on_attach = on_attach,
@@ -125,13 +110,6 @@ return {
       pattern = "markdown",
       callback = function()
         vim.lsp.enable("marksman")
-      end,
-    })
-
-    vim.api.nvim_create_autocmd("FileType", {
-      pattern = { "typescript", "javascript", "svelte" },
-      callback = function()
-        vim.lsp.enable("svelte")
       end,
     })
 

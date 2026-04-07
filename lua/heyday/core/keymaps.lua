@@ -71,3 +71,13 @@ vim.diagnostic.config({
     scope = "cursor", -- Show diagnostics for 'cursor', 'line', or 'buffer'
   },
 })
+
+-- Set global mark (using mark A)
+vim.keymap.set("n", "<leader>M", function()
+  vim.cmd("normal! mA")
+end, { desc = "Set global mark A" })
+
+-- Jump to global mark (exact position)
+vim.keymap.set("n", "<leader>m", function()
+  vim.cmd("normal! `A")
+end, { desc = "Jump to global mark A" })

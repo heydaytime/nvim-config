@@ -1,10 +1,13 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  lazy = false,
   build = ":TSUpdate",
-  main = "nvim-treesitter.configs",
   opts = {
-    auto_install = true,
-    ensure_installed = {
+    install_dir = vim.fn.stdpath("data") .. "/site",
+  },
+  config = function(_, opts)
+    require("nvim-treesitter").setup(opts)
+    require("nvim-treesitter").install({
       "json",
       "javascript",
       "typescript",
@@ -15,7 +18,6 @@ return {
       "prisma",
       "markdown",
       "markdown_inline",
-      "svelte",
       "graphql",
       "bash",
       "lua",
@@ -28,11 +30,38 @@ return {
       "gdscript",
       "godot_resource",
       "gdshader",
-    },
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = { "ruby" },
-    },
-    indent = { enable = true, disable = { "ruby" } },
-  },
+    })
+
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = {
+        "javascript",
+        "typescript",
+        "tsx",
+        "javascriptreact",
+        "typescriptreact",
+        "json",
+        "yaml",
+        "html",
+        "css",
+        "prisma",
+        "markdown",
+        "markdown_inline",
+        "graphql",
+        "bash",
+        "lua",
+        "vim",
+        "dockerfile",
+        "gitignore",
+        "query",
+        "vimdoc",
+        "c",
+        "gdscript",
+        "godot_resource",
+        "gdshader",
+      },
+      callback = function()
+        vim.treesitter.start()
+      end,
+    })
+  end,
 }
